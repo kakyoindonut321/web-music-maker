@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>experiment</title>
+    <style>
+      .parent {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        width: 300px;
+      }
+
+      .elements {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body ondragstart="return false;" ondrop="return false;">
+    <div class="parent">
+      <div class="elements lone"></div>
+      <div class="elements"></div>
+      <div class="elements"></div>
+      <div class="elements"></div>
+      <div class="elements"></div>
+      <div class="elements"></div>
+      <div class="elements"></div>
+      <div class="elements"></div>
+      <div class="elements"></div>
+    </div>
+    <script>
+      let paret = document.querySelector(".parent");
+      let items = document.querySelectorAll(".elements");
+      let lone = document.querySelector(".lone");
+      var drag = false;
+      window.addEventListener("mousedown", () => {
+        drag = true;
+      });
+      window.addEventListener("mouseup", () => {
+        drag = false;
+      });
+
+      items.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+          if (drag) {
+            if (item.style.backgroundColor != "green") {
+              item.style.backgroundColor = "green";
+            } else {
+              item.style.backgroundColor = "red";
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

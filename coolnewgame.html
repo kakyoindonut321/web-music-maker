@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>experiment</title>
+    <style>
+      .centered,
+      .centertitle {
+        display: flex;
+        justify-content: center;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .parent {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto auto;
+      }
+
+      .elements {
+        width: 80px;
+        height: 80px;
+        background-color: red;
+        /* border: 1px solid black; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>REMOVE THE GREEN BLOCK</h1>
+    <div class="centertitle">
+      <button class="done">DONE?</button>
+    </div>
+    <div class="centered">
+      <div class="parent">
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+        <div class="elements"></div>
+      </div>
+    </div>
+
+    <script>
+      let paret = document.querySelector(".parent");
+      let items = document.querySelectorAll(".elements");
+      let lone = document.querySelector(".lone");
+      let done = document.querySelector(".done");
+      let checkwin = false;
+
+      const getRandomColor = () =>
+        ["red", "green"][Math.floor(Math.random() * 2)];
+
+      items.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+          if (!checkwin) {
+            if (item.style.backgroundColor != "green") {
+              item.style.backgroundColor = "green";
+            } else {
+              item.style.backgroundColor = "red";
+            }
+          }
+        });
+
+        item.style.backgroundColor = getRandomColor();
+      });
+
+      done.addEventListener("click", () => {
+        let checkItem = document.querySelectorAll(".elements");
+        var check = true;
+        checkItem.forEach((index) => {
+          if (index.style.backgroundColor == "green" && check) {
+            alert("YOU AIN'T DONE YET");
+            check = false;
+          }
+        });
+        if (check) {
+          alert("YOU WIN");
+          checkwin = true;
+        }
+      });
+    </script>
+  </body>
+</html>

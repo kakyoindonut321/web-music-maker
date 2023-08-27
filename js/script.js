@@ -2,7 +2,7 @@ let patternContainer = document.querySelector(".pattern"),
   playbutton = document.querySelector(".playbutton"),
   patternChangeButton = document.querySelector(".pattern-change"),
   patternLength = document.querySelector(".pattern-length"),
-  referencePattern = document.querySelector(".reference-point"),
+  // referencePattern = document.querySelector(".reference-point"),
   tempoChange = document.querySelector(".tempo-change"),
   tempoInput = document.querySelector(".temput");
 
@@ -12,7 +12,7 @@ var aborting = false,
 
 tempoChange.addEventListener("click", () => {
   let tempoValue = parseInt(tempoInput.value);
-  if (tempoValue < 60 || tempoValue > 200) {
+  if (tempoValue < 60 || tempoValue > 400) {
     alert("invalid value, please enter between 60-200 bpm");
     return;
   }
@@ -22,7 +22,7 @@ tempoChange.addEventListener("click", () => {
   tempo = bpm;
 });
 
-// CHANGE HOW MANY PATTERNS THERE ARE(THIS USE CHATGPT)
+// CHANGE HOW MANY PATTERNS THERE ARE(heavily modified to the point where it doesn't look like the one chatgpt wrote)
 patternChangeButton.addEventListener("click", () => {
   aborting = true;
   const inputValue = parseInt(patternLength.value);
@@ -32,14 +32,45 @@ patternChangeButton.addEventListener("click", () => {
   }
   // Ensure the input value is not below 1
   if (inputValue >= 1) {
-    patternContainer.innerHTML = "";
-    for (let i = 0; i < inputValue; i++) {
-      const newParagraph = referencePattern.cloneNode(true);
-      newParagraph.style.display = "grid"; // Show the cloned paragraph
-      newParagraph.style.transform = "none";
-      newParagraph.style.border = "none";
-      // newParagraph.style.borderLeft = "1px solid black";
-      patternContainer.appendChild(newParagraph);
+    let patternItem = document.querySelectorAll(".pattern-column");
+    let patternNewCon = document.querySelector(".pattern");
+
+    // this operation may not be possible if both value are the same
+    // so idk just making sure I didn't include it ehhh
+    if (inputValue != patternItem.length) {
+      // do this operation if input value is smaller than current length of the patterns
+      if (inputValue < patternItem.length) {
+        console.log("length of pattern before:", patternItem.length);
+
+        patternItem.forEach((index) => {
+          index.style.transform = "none";
+          index.style.border = "none";
+        });
+        for (let i = inputValue; i < patternItem.length; i++) {
+          patternNewCon.removeChild(patternItem[i]);
+          // console.log(patternItem[i]);
+          console.log("pattern removed:", i);
+        }
+        console.log("length of the pattern after:", inputValue);
+        // patternContainer.innerHTML = "";
+
+        // do this operation if input value is bigger than patterns
+      } else {
+        let referencePat = patternItem[0].cloneNode(true);
+        for (const child of referencePat.children) {
+          child.style.backgroundColor = "grey";
+        }
+        for (let i = patternItem.length; i < inputValue; i++) {
+          const newParagraph = referencePat.cloneNode(true);
+          // newParagraph.style.display = "grid";
+          newParagraph.style.transform = "none";
+          newParagraph.style.border = "none";
+          // newParagraph.style.borderLeft = "1px solid black";
+          patternNewCon.appendChild(newParagraph);
+        }
+      }
+    } else {
+      console.log("input is already the same");
     }
   }
   document.querySelector(".current-length").innerHTML = inputValue;
@@ -60,6 +91,8 @@ function initialPattern() {
     index.addEventListener("click", () => {
       if (index.style.backgroundColor != "green") {
         index.style.backgroundColor = "green";
+        var idSplitInit = index.id.split("-");
+        instrument.play(idSplitInit[0], idSplitInit[1], 2);
       } else {
         index.style.backgroundColor = "grey";
       }
@@ -99,6 +132,7 @@ async function playMusic() {
       count++;
     }
     prevPattern = patterns[p];
+    // time delay
     await sleep(tempo);
   }
   playing = false;
