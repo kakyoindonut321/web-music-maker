@@ -1,0 +1,92 @@
+/* KEYBOARD */
+
+.window {
+    display: flex;
+    height: 520px;
+    width: 1200px;
+    background-color: blue;
+    padding: 10px;
+    overflow: scroll;
+}
+
+.keyboard {
+    width: 100px;
+    height: 500px;
+    /* border: 1px solid; */
+}
+
+.notes {
+    display: grid;
+    grid-template-columns: auto;
+    /* gap: 10px; */
+    width: 100%;
+    height: 100%;
+    /* background-color: black; */
+}
+
+.note {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    height: 30px;
+    background-color: white;
+}
+
+.note:hover {
+    background-color: grey;
+}
+
+.note:active {
+    background-color: white;
+}
+
+.black-note {
+    background-color: black;
+    color: white;
+}
+
+
+/* PATTERN */
+
+.pattern {
+    display: flex;
+    width: 900px;
+    height: 500px;
+}
+
+.pattern-column {
+    display: grid;
+    grid-template-columns: auto;
+    /* gap: 10px; */
+    width: 50px;
+    height: 100%;
+    transition: border .5s;
+    /* background-color: red; */
+    /* border-left: 1px solid black; */
+    /* box-sizing: border-box; */
+}
+
+.pattern-column:hover {
+    box-shadow: 0px 0px 10px solid black;
+}
+
+.single-pattern {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 50px;
+    height: 30px;
+    background-color: grey;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    box-sizing: border-box;
+}
+
+.single-pattern:hover {
+    background-color: white;
+}
+
+.single-pattern:active {
+    background-color: grey;
+}
