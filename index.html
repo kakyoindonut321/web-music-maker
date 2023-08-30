@@ -12,15 +12,15 @@
     <div class="settings">
       <div class="setting-option">
         <h4 style="padding: 0; margin: 0">
-          current length: <span class="current-length">8</span>
+          current length: <span class="current-length">10</span>
         </h4>
         <input
           type="number"
           class="pattern-length"
           name="pattern-length"
           min="1"
-          max="20"
-          placeholder="pattern length(1-30) "
+          max="100"
+          placeholder="pattern length(1-100) "
         />
 
         <button class="pattern-change">change pattern length</button>
@@ -36,6 +36,22 @@
       <div class="setting-option">
         <h4 style="padding: 0; margin: 0">toggle note visibility</h4>
         <button class="note-visibility">Hide notes</button>
+      </div>
+      <!-- <div class="setting-option ">
+        <h4 style="padding: 0; margin: 0 ">change instrument</h4>
+        <select name="instrument " id="instrument " class="instrument ">
+          <option value="0 ">Piano</option>
+          <option value="1 ">Organ</option>
+          <option value="2 ">Guitar</option>
+          <option value="3 ">Synth</option>
+        </select>
+      </div> -->
+      <div class="save">
+        <div class="export">
+          <p>export pattern</p>
+          <button class="export-button">export</button>
+        </div>
+        <div class="import"></div>
       </div>
     </div>
     <button class="playbutton">PLAY</button>
@@ -64,12 +80,25 @@
           <button class="note white-note" id="F-3 ">F3</button>
           <button class="note black-note" id="F#-3 ">F#3</button>
           <button class="note white-note" id="G-3 ">G3</button>
-          <button class="note black-note" id="G#-3 ">G#2</button>
+          <button class="note black-note" id="G#-3 ">G#3</button>
           <button class="note white-note" id="A-3 ">A3</button>
           <button class="note black-note" id="A#-3 ">A#3</button>
           <button class="note white-note" id="B-3 ">B3</button>
           <!-- C4 -->
           <button class="note white-note note-octave" id="C-4 ">C4</button>
+          <button class="note black-note" id="C#-4 ">C#4</button>
+          <button class="note white-note" id="D-4 ">D4</button>
+          <button class="note black-note" id="D#-4 ">D#4</button>
+          <button class="note white-note" id="E-4 ">E4</button>
+          <button class="note white-note" id="F-4 ">F4</button>
+          <button class="note black-note" id="F#-4 ">F#4</button>
+          <button class="note white-note" id="G-4 ">G4</button>
+          <button class="note black-note" id="G#-4 ">G#4</button>
+          <button class="note white-note" id="A-4 ">A4</button>
+          <button class="note black-note" id="A#-4 ">A#4</button>
+          <button class="note white-note" id="B-4 ">B4</button>
+          <!-- C5 -->
+          <button class="note white-note note-octave" id="C-5 ">C5</button>
         </div>
       </div>
       <!--  -->
@@ -105,6 +134,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
         <div class="pattern-column">
           <!-- C2 -->
@@ -135,6 +177,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
         <div class="pattern-column">
           <!-- C2 -->
@@ -165,6 +220,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
         <div class="pattern-column">
           <!-- C2 -->
@@ -195,6 +263,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
         <div class="pattern-column">
           <!-- C2 -->
@@ -225,6 +306,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
         <div class="pattern-column">
           <!-- C2 -->
@@ -255,6 +349,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
         <div class="pattern-column">
           <!-- C2 -->
@@ -285,6 +392,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
         <div class="pattern-column">
           <!-- C2 -->
@@ -315,6 +435,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
         <div class="pattern-column">
           <!-- C2 -->
@@ -345,6 +478,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
         <div class="pattern-column">
           <!-- C2 -->
@@ -375,6 +521,19 @@
           <button class="single-pattern" id="B-3 "></button>
           <!-- C4 -->
           <button class="single-pattern octave" id="C-4 "></button>
+          <button class="single-pattern" id="C#-4 "></button>
+          <button class="single-pattern" id="D-4 "></button>
+          <button class="single-pattern" id="D#-4 "></button>
+          <button class="single-pattern" id="E-4 "></button>
+          <button class="single-pattern" id="F-4 "></button>
+          <button class="single-pattern" id="F#-4 "></button>
+          <button class="single-pattern" id="G-4 "></button>
+          <button class="single-pattern" id="G#-4 "></button>
+          <button class="single-pattern" id="A-4 "></button>
+          <button class="single-pattern" id="A#-4 "></button>
+          <button class="single-pattern" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern octave" id="C-5 "></button>
         </div>
       </div>
     </div>
