@@ -35,14 +35,35 @@ visibilityToggle.addEventListener("click", () => {
 // PATTERN
 let patternContainer = document.querySelector(".pattern"),
   playbutton = document.querySelector(".playbutton"),
+  resetbutton = document.querySelector(".resetbutton"),
   patternChangeButton = document.querySelector(".pattern-change"),
   patternLength = document.querySelector(".pattern-length"),
   tempoChange = document.querySelector(".tempo-change"),
-  tempoInput = document.querySelector(".temput");
+  tempoInput = document.querySelector(".temput"),
+  saving = false;
 
 var tempo = 500;
 var aborting = false,
   playing = false;
+
+// RESET
+resetbutton.addEventListener("click", () => {
+  if (!saving) return;
+  if (confirm("reset the notes?")) {
+    for (children of patternContainer.children) {
+      for (notes of children.children) {
+        switch (notes.style.backgroundColor) {
+          case "green":
+            notes.style.backgroundColor = "grey";
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  } else {
+  }
+});
 
 // change tempo
 tempoChange.addEventListener("click", () => {
@@ -111,6 +132,7 @@ patternChangeButton.addEventListener("click", () => {
               } else {
                 child.style.backgroundColor = "grey";
               }
+              saving = true;
             });
           }
         }
@@ -138,6 +160,7 @@ function initialPattern() {
       } else {
         index.style.backgroundColor = "grey";
       }
+      saving = true;
     });
   });
 }

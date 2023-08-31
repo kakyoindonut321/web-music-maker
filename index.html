@@ -29,8 +29,14 @@
         <h4 style="padding: 0; margin: 0">
           current tempo: <span class="current-tempo">120</span>
         </h4>
-        <input type="number " class="temput " name="temput " min="60 " max=200 "
-        placeholder="tempo is in 1/4(60-400 bpm) " />
+        <input
+          type="number"
+          class="temput"
+          name="temput"
+          min="60"
+          max="200"
+          placeholder="tempo is in 1/4(60-400 bpm) "
+        />
         <button class="tempo-change">change tempo</button>
       </div>
       <div class="setting-option">
@@ -47,14 +53,21 @@
         </select>
       </div> -->
       <div class="save">
-        <div class="export">
-          <p>export pattern</p>
+        <div class="export save-option">
+          <p style="margin: 0">export pattern</p>
           <button class="export-button">export</button>
+          <p style="margin: 0">pattern name</p>
+          <input type="text" name="songname" id="songname" class="songname" />
         </div>
-        <div class="import"></div>
+        <div class="import save-option">
+          <p style="margin: 0">import pattern</p>
+          <button class="import-button">import</button>
+          <input type="file" id="inputfile" name="file" />
+        </div>
       </div>
     </div>
     <button class="playbutton">PLAY</button>
+    <button class="resetbutton">RESET</button>
     <div class="window">
       <div class="keyboard grid-height">
         <div class="notes">

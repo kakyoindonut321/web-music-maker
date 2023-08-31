@@ -1,12 +1,73 @@
 let exportBut = document.querySelector(".export-button");
+let importBut = document.querySelector(".import-button");
+let songname = document.querySelector(".songname");
+let fileInput = document.getElementById("inputfile");
+var fr = new FileReader();
 
 exportBut.addEventListener("click", exportPattern);
+importBut.addEventListener("click", () => {
+  fr.onload = function () {
+    // let json = fr.result;
+    importPattern(JSON.parse(fr.result));
+  };
+  fr.readAsText(fileInput.files[0]);
+});
+// const testData = {
+//   dataLength: 10,
+//   bigText: [
+//     [
+//       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//     [
+//       0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//     [
+//       0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//     [
+//       0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//     [
+//       0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//     [
+//       0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//     [
+//       0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//     [
+//       0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//     [
+//       0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//     [
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     ],
+//   ],
+// };
 
 function exportPattern() {
+  if (songname.value == "") {
+    alert("name must not be empty");
+    return;
+  }
   let allPattern = document.querySelector(".pattern").children;
   let arraydata = [];
+  let length = allPattern.length;
 
-  for (let i = 0; i < allPattern.length; i++) {
+  for (let i = 0; i < length; i++) {
     let currentColumn = allPattern[i].children;
     insideray = [];
     for (let b = 0; b < currentColumn.length; b++) {
@@ -21,6 +82,83 @@ function exportPattern() {
     }
     arraydata.push(insideray);
   }
-  let stringifyArray = "" + arraydata + "";
-  console.log(stringifyArray);
+
+  let dummyData = {
+    name: songname.value,
+    dataLength: length,
+    bigText: arraydata,
+  };
+
+  download(dummyData, dummyData.name);
+}
+
+function importPattern(patternData) {
+  if (saving) {
+    if (!confirm("are you sure? unsaved patterns will be discarded")) return;
+  }
+  let patContainer = document.querySelector(".pattern");
+  let referencePatt = document
+    .querySelectorAll(".pattern-column")[0]
+    .cloneNode(true);
+  let arrayData = patternData.bigText;
+  patContainer.innerHTML = "";
+  for (patternArray of arrayData) {
+    let perPattern = referencePatt.cloneNode(true);
+    for (let n = 0; n < patternArray.length; n++) {
+      if (patternArray[n] === 1) {
+        perPattern.children[n].style.backgroundColor = "green";
+      } else {
+        perPattern.children[n].style.backgroundColor = "grey";
+      }
+    }
+    patContainer.appendChild(perPattern);
+    for (const child of perPattern.children) {
+      child.addEventListener("click", () => {
+        if (child.style.backgroundColor != "green") {
+          child.style.backgroundColor = "green";
+          var idSplitInit = child.id.split("-");
+          instrument.play(idSplitInit[0], idSplitInit[1], 2);
+        } else {
+          child.style.backgroundColor = "grey";
+        }
+        saving = true;
+      });
+    }
+  }
+}
+
+function arrayToBin(theArray) {
+  let usedArray = [...theArray];
+  for (let ar = 0; ar < usedArray.length; ar++) {
+    let stringyArray = usedArray[ar].toString();
+    let newArray = parseInt(stringyArray.split(",").reverse().join(""), 2);
+    usedArray[ar] = newArray;
+  }
+  return usedArray;
+}
+
+function binToArray(theArray) {
+  let usedArray = [...theArray];
+  for (let ar = 0; ar < usedArray.length; ar++) {
+    let stringyBin = dec2bin(usedArray[ar], 37);
+    let newArray = stringyBin.split("").map((x) => parseInt(x));
+    usedArray[ar] = newArray;
+  }
+  return usedArray;
+}
+
+function dec2bin(dec, binLength) {
+  let binary = (dec >>> 0).toString(2).split("").reverse().join("");
+  let remainder = binLength - binary.length;
+  let addedZero = "0".repeat(remainder);
+  return binary + addedZero;
+}
+
+function download(content, fileName) {
+  var a = document.createElement("a");
+  let stringJson = JSON.stringify(content);
+  var file = new Blob([stringJson], { type: "text/plain" });
+  a.href = URL.createObjectURL(file);
+  a.download = fileName + ".json";
+  a.click();
 }

@@ -21,3 +21,11 @@
 .setting-option {
     padding: 5px;
 }
+
+.save {
+    display: flex;
+}
+
+.save-option {
+    padding: 10px;
+}
