@@ -1,4 +1,4 @@
-# Web Music Maker _by navis_
+# Web Music Maker
 
 This is an online music maker where you can make and draw any music you want, if you know how.
 

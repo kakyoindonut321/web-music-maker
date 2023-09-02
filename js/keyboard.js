@@ -10,7 +10,7 @@ let visibilityToggleVar = true;
 keyboardNotes.forEach((index, value) => {
   index.addEventListener("click", () => {
     var splitNotes = index.id.split("-");
-    instrument.play(splitNotes[0], splitNotes[1], 2);
+    instrument.play(splitNotes[0], splitNotes[1], 1);
   });
 });
 
@@ -82,8 +82,8 @@ tempoChange.addEventListener("click", () => {
 patternChangeButton.addEventListener("click", () => {
   aborting = true;
   const inputValue = parseInt(patternLength.value);
-  if (inputValue < 1 || inputValue > 100) {
-    alert("invalid value, please enter between 1-100 patterns");
+  if (inputValue < 1 || inputValue > 1000) {
+    alert("invalid value, please enter between 1-1000 patterns");
     return;
   }
   // Ensure the input value is not below 1
@@ -128,7 +128,7 @@ patternChangeButton.addEventListener("click", () => {
               if (child.style.backgroundColor != "green") {
                 child.style.backgroundColor = "green";
                 var idSplitInit = child.id.split("-");
-                instrument.play(idSplitInit[0], idSplitInit[1], 2);
+                instrument.play(idSplitInit[0], idSplitInit[1], 1);
               } else {
                 child.style.backgroundColor = "grey";
               }
@@ -156,7 +156,7 @@ function initialPattern() {
       if (index.style.backgroundColor != "green") {
         index.style.backgroundColor = "green";
         var idSplitInit = index.id.split("-");
-        instrument.play(idSplitInit[0], idSplitInit[1], 2);
+        instrument.play(idSplitInit[0], idSplitInit[1], 1);
       } else {
         index.style.backgroundColor = "grey";
       }
@@ -192,7 +192,7 @@ async function playMusic() {
     for (const child of patterns[p].children) {
       if (child.style.backgroundColor == "green") {
         var idSplit = child.id.split("-");
-        instrument.play(idSplit[0], idSplit[1], 2);
+        instrument.play(idSplit[0], idSplit[1], 1);
       }
       count++;
     }

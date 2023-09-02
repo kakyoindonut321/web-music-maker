@@ -2,6 +2,7 @@ let exportBut = document.querySelector(".export-button");
 let importBut = document.querySelector(".import-button");
 let songname = document.querySelector(".songname");
 let fileInput = document.getElementById("inputfile");
+let costumizeButton = document.querySelector(".costumizebutton");
 var fr = new FileReader();
 
 exportBut.addEventListener("click", exportPattern);
@@ -86,7 +87,7 @@ function exportPattern() {
   let dummyData = {
     name: songname.value,
     dataLength: length,
-    bigText: arraydata,
+    bigText: arrayToBin(arraydata),
   };
 
   download(dummyData, dummyData.name);
@@ -96,11 +97,13 @@ function importPattern(patternData) {
   if (saving) {
     if (!confirm("are you sure? unsaved patterns will be discarded")) return;
   }
+  saving = true;
+
   let patContainer = document.querySelector(".pattern");
   let referencePatt = document
     .querySelectorAll(".pattern-column")[0]
     .cloneNode(true);
-  let arrayData = patternData.bigText;
+  let arrayData = binToArray(patternData.bigText);
   patContainer.innerHTML = "";
   for (patternArray of arrayData) {
     let perPattern = referencePatt.cloneNode(true);
@@ -117,7 +120,7 @@ function importPattern(patternData) {
         if (child.style.backgroundColor != "green") {
           child.style.backgroundColor = "green";
           var idSplitInit = child.id.split("-");
-          instrument.play(idSplitInit[0], idSplitInit[1], 2);
+          instrument.play(idSplitInit[0], idSplitInit[1], 1);
         } else {
           child.style.backgroundColor = "grey";
         }
@@ -162,3 +165,26 @@ function download(content, fileName) {
   a.download = fileName + ".json";
   a.click();
 }
+
+// CUSTOME CODE HERE
+costumizeButton.addEventListener("click", () => {
+  if (!confirm("are you sure?")) return;
+  let patContainer = document.querySelector(".pattern");
+  let points = 10;
+  let state = true;
+  for (children of patContainer.children) {
+    for (let i = 0; i < children.children.length; i++) {
+      if (i == points) {
+        children.children[i].style.backgroundColor = "green";
+      }
+    }
+    if (points == 10) {
+      state = true;
+    } else if (points == 37) {
+      state = false;
+    }
+
+    state ? points++ : points--;
+    console.log(points);
+  }
+});
