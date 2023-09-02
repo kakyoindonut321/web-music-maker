@@ -2,6 +2,12 @@
 var instrumentId = 0;
 var instrument = Synth.createInstrument(instrumentId);
 
+// piano settings
+Synth.setSampleRate(20000);
+console.log(Synth.getSampleRate());
+Synth.setVolume(1);
+// console.log(Synth.loadSoundProfile());
+
 // KEYBOARD ---------------------------------------------------------------
 let keyboardNotes = document.querySelectorAll(".note");
 let visibilityToggle = document.querySelector(".note-visibility");
@@ -42,9 +48,81 @@ let patternContainer = document.querySelector(".pattern"),
   tempoInput = document.querySelector(".temput"),
   saving = false;
 
-var tempo = 500;
-var aborting = false,
-  playing = false;
+var tempo = 500,
+  aborting = false,
+  playing = false,
+  duration = 2;
+
+// EVENT GIVER
+var drag = false;
+var state = null;
+window.addEventListener("mousedown", () => {
+  drag = true;
+});
+window.addEventListener("mouseup", () => {
+  drag = false;
+  state = null;
+});
+
+function eventgiver(items, singleIterable = false) {
+  if (singleIterable) {
+    items.addEventListener("mouseenter", () => {
+      if (drag) {
+        if (items.style.backgroundColor != "green" && state != "grey") {
+          items.style.backgroundColor = "green";
+          var idSplitted = items.id.split("-");
+          instrument.play(idSplitted[0], idSplitted[1], duration);
+          state = "green";
+        } else if (items.style.backgroundColor == "green" && state != "green") {
+          items.style.backgroundColor = "grey";
+          state = "grey";
+        }
+      }
+      saving = true;
+    });
+    items.addEventListener("mousedown", () => {
+      if (items.style.backgroundColor != "green" && state != "grey") {
+        items.style.backgroundColor = "green";
+        var idSplitted = items.id.split("-");
+        instrument.play(idSplitted[0], idSplitted[1], duration);
+        state = "green";
+      } else if (items.style.backgroundColor == "green" && state != "green") {
+        items.style.backgroundColor = "grey";
+        state = "grey";
+      }
+      saving = true;
+    });
+    return;
+  }
+  items.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      if (drag) {
+        if (item.style.backgroundColor != "green" && state != "grey") {
+          item.style.backgroundColor = "green";
+          var idSplitted = item.id.split("-");
+          instrument.play(idSplitted[0], idSplitted[1], duration);
+          state = "green";
+        } else if (item.style.backgroundColor == "green" && state != "green") {
+          item.style.backgroundColor = "grey";
+          state = "grey";
+        }
+      }
+      saving = true;
+    });
+    item.addEventListener("mousedown", () => {
+      if (item.style.backgroundColor != "green" && state != "grey") {
+        item.style.backgroundColor = "green";
+        var idSplitted = item.id.split("-");
+        instrument.play(idSplitted[0], idSplitted[1], duration);
+        state = "green";
+      } else if (item.style.backgroundColor == "green" && state != "green") {
+        item.style.backgroundColor = "grey";
+        state = "grey";
+      }
+      saving = true;
+    });
+  });
+}
 
 // RESET
 resetbutton.addEventListener("click", () => {
@@ -104,11 +182,9 @@ patternChangeButton.addEventListener("click", () => {
         });
         for (let i = inputValue; i < patternItem.length; i++) {
           patternNewCon.removeChild(patternItem[i]);
-          // console.log(patternItem[i]);
           console.log("pattern removed:", i);
         }
         console.log("length of the pattern after:", inputValue);
-        // patternContainer.innerHTML = "";
 
         // do this operation if input value is bigger than patterns
       } else {
@@ -118,22 +194,13 @@ patternChangeButton.addEventListener("click", () => {
         }
         for (let i = patternItem.length; i < inputValue; i++) {
           const newParagraph = referencePat.cloneNode(true);
-          // newParagraph.style.display = "grid";
           newParagraph.style.transform = "none";
           newParagraph.style.border = "none";
-          // newParagraph.style.borderLeft = "1px solid black";
           patternNewCon.appendChild(newParagraph);
+
+          // give event
           for (const child of newParagraph.children) {
-            child.addEventListener("click", () => {
-              if (child.style.backgroundColor != "green") {
-                child.style.backgroundColor = "green";
-                var idSplitInit = child.id.split("-");
-                instrument.play(idSplitInit[0], idSplitInit[1], 1);
-              } else {
-                child.style.backgroundColor = "grey";
-              }
-              saving = true;
-            });
+            eventgiver(child, true);
           }
         }
       }
@@ -147,22 +214,7 @@ patternChangeButton.addEventListener("click", () => {
 // initial pattern
 function initialPattern() {
   let note = document.querySelectorAll(".single-pattern");
-  // note.forEach((index, value) => {
-  //   index.style.backgroundColor = "grey";
-  // });
-
-  note.forEach((index, value) => {
-    index.addEventListener("click", () => {
-      if (index.style.backgroundColor != "green") {
-        index.style.backgroundColor = "green";
-        var idSplitInit = index.id.split("-");
-        instrument.play(idSplitInit[0], idSplitInit[1], 1);
-      } else {
-        index.style.backgroundColor = "grey";
-      }
-      saving = true;
-    });
-  });
+  eventgiver(note);
 }
 
 // DELAY FUNCTION
@@ -192,7 +244,7 @@ async function playMusic() {
     for (const child of patterns[p].children) {
       if (child.style.backgroundColor == "green") {
         var idSplit = child.id.split("-");
-        instrument.play(idSplit[0], idSplit[1], 1);
+        instrument.play(idSplit[0], idSplit[1], duration);
       }
       count++;
     }
@@ -207,6 +259,7 @@ async function playMusic() {
 // initialization
 initialPattern();
 
+// PLAYING THE MUSIC(this is confusing for some reason)
 playbutton.addEventListener("click", () => {
   let patternCol = document.querySelectorAll(".pattern-column");
   if (playing) {
@@ -223,10 +276,10 @@ playbutton.addEventListener("click", () => {
   //   console.log("done");
 });
 
+// clear columns style after play
 function clearColumns(allCol) {
   allCol.forEach((column) => {
     column.style.transform = "none";
     column.style.border = "none";
-    // column.style.borderLeft = "1px solid black";
   });
 }

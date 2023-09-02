@@ -4,6 +4,7 @@ let songname = document.querySelector(".songname");
 let fileInput = document.getElementById("inputfile");
 let costumizeButton = document.querySelector(".costumizebutton");
 var fr = new FileReader();
+let notesLength = 37;
 
 exportBut.addEventListener("click", exportPattern);
 importBut.addEventListener("click", () => {
@@ -115,17 +116,10 @@ function importPattern(patternData) {
       }
     }
     patContainer.appendChild(perPattern);
+
+    // give event
     for (const child of perPattern.children) {
-      child.addEventListener("click", () => {
-        if (child.style.backgroundColor != "green") {
-          child.style.backgroundColor = "green";
-          var idSplitInit = child.id.split("-");
-          instrument.play(idSplitInit[0], idSplitInit[1], 1);
-        } else {
-          child.style.backgroundColor = "grey";
-        }
-        saving = true;
-      });
+      eventgiver(child, true);
     }
   }
 }
@@ -143,7 +137,7 @@ function arrayToBin(theArray) {
 function binToArray(theArray) {
   let usedArray = [...theArray];
   for (let ar = 0; ar < usedArray.length; ar++) {
-    let stringyBin = dec2bin(usedArray[ar], 37);
+    let stringyBin = dec2bin(usedArray[ar], notesLength);
     let newArray = stringyBin.split("").map((x) => parseInt(x));
     usedArray[ar] = newArray;
   }
@@ -180,7 +174,7 @@ costumizeButton.addEventListener("click", () => {
     }
     if (points == 10) {
       state = true;
-    } else if (points == 37) {
+    } else if (points == notesLength) {
       state = false;
     }
 

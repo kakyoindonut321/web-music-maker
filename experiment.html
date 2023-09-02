@@ -39,10 +39,6 @@
         let lone = document.querySelector(".lone");
         var drag = false;
         var state = null;
-        // items.forEach((item) => {
-        //     item.style.backgroundColor = "red";
-        // });
-
         window.addEventListener("mousedown", () => {
             drag = true;
         });
@@ -51,9 +47,23 @@
             state = null;
         });
 
-        items.forEach((item) => {
-            item.addEventListener("mouseenter", () => {
-                if (drag) {
+        function eventgiver(items) {
+            items.forEach((item) => {
+                item.addEventListener("mouseenter", () => {
+                    if (drag) {
+                        if (item.style.backgroundColor != "green" && state != "red") {
+                            item.style.backgroundColor = "green";
+                            state = "green";
+                        } else if (
+                            item.style.backgroundColor == "green" &&
+                            state != "green"
+                        ) {
+                            item.style.backgroundColor = "red";
+                            state = "red";
+                        }
+                    }
+                });
+                item.addEventListener("mousedown", () => {
                     if (item.style.backgroundColor != "green" && state != "red") {
                         item.style.backgroundColor = "green";
                         state = "green";
@@ -64,21 +74,9 @@
                         item.style.backgroundColor = "red";
                         state = "red";
                     }
-                }
+                });
             });
-            item.addEventListener("mousedown", () => {
-                if (item.style.backgroundColor != "green" && state != "red") {
-                    item.style.backgroundColor = "green";
-                    state = "green";
-                } else if (
-                    item.style.backgroundColor == "green" &&
-                    state != "green"
-                ) {
-                    item.style.backgroundColor = "red";
-                    state = "red";
-                }
-            });
-        });
+        }
     </script>
 </body>
 
