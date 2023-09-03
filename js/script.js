@@ -4,7 +4,7 @@ let songname = document.querySelector(".songname");
 let fileInput = document.getElementById("inputfile");
 let costumizeButton = document.querySelector(".costumizebutton");
 var fr = new FileReader();
-let notesLength = 37;
+let notesLength = 49;
 
 exportBut.addEventListener("click", exportPattern);
 importBut.addEventListener("click", () => {
@@ -88,7 +88,9 @@ function exportPattern() {
   let dummyData = {
     name: songname.value,
     dataLength: length,
+    // COMPRESSION
     bigText: arrayToBin(arraydata),
+    // bigText: arraydata,
   };
 
   download(dummyData, dummyData.name);
@@ -104,7 +106,11 @@ function importPattern(patternData) {
   let referencePatt = document
     .querySelectorAll(".pattern-column")[0]
     .cloneNode(true);
+
+  // DECOMPRESSION(decimal)
   let arrayData = binToArray(patternData.bigText);
+  // let = patternData.bigText;
+
   patContainer.innerHTML = "";
   for (patternArray of arrayData) {
     let perPattern = referencePatt.cloneNode(true);
@@ -145,7 +151,8 @@ function binToArray(theArray) {
 }
 
 function dec2bin(dec, binLength) {
-  let binary = (dec >>> 0).toString(2).split("").reverse().join("");
+  let binary = Number(dec).toString(2).split("").reverse().join("");
+  // let binary = (dec >>> 0).toString(2).split("").reverse().join("");
   let remainder = binLength - binary.length;
   let addedZero = "0".repeat(remainder);
   return binary + addedZero;

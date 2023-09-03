@@ -2,9 +2,7 @@
 
 This is an online music maker where you can make and draw any music you want, if you know how.
 
-## UPDATE!!!
-
-- I've made a severe and continuous lapse in my judgement, and I do not expected to be forgiven, I've mention before how you can save your patterns in our database with accounts? I've consider to abandon that idea as they also abandon making this as the assignment, and instead go with a cheap, download export and import instead.
+#### Update below
 
 ## Features
 
@@ -19,3 +17,11 @@ This is an online music maker where you can make and draw any music you want, if
 - limited to 1/5 tempo bpm, which mean you cannot have 2 or more notes on the same beat
 - ~~password is not protected with encryption, who the fuck wants to steal your pattern anyway.~~ _abandoned_
 - many more, many less
+
+## UPDATE
+
+- I've made a severe and continuous lapse in my judgement, and I do not expected to be forgiven, I've mention before how you can save your patterns in our database with accounts? I've consider to abandon that idea as they also abandon making this as the assignment, and instead go with a cheap, download export and import instead.
+
+- YOU CAN NOW DRAG AND DRAW, THAT'S RIGHT, DRAG AND DRAW, NO MORE PAIN CLICKING
+
+- we decided to change the tempo from 1/4 to 1/8 to be more "accurate"

@@ -3,7 +3,7 @@ var instrumentId = 0;
 var instrument = Synth.createInstrument(instrumentId);
 
 // piano settings
-Synth.setSampleRate(20000);
+Synth.setSampleRate(2000);
 console.log(Synth.getSampleRate());
 Synth.setVolume(1);
 // console.log(Synth.loadSoundProfile());
@@ -16,7 +16,7 @@ let visibilityToggleVar = true;
 keyboardNotes.forEach((index, value) => {
   index.addEventListener("click", () => {
     var splitNotes = index.id.split("-");
-    instrument.play(splitNotes[0], splitNotes[1], 1);
+    instrument.play(splitNotes[0], splitNotes[1], 2);
   });
 });
 
@@ -48,7 +48,7 @@ let patternContainer = document.querySelector(".pattern"),
   tempoInput = document.querySelector(".temput"),
   saving = false;
 
-var tempo = 500,
+var tempo = 250,
   aborting = false,
   playing = false,
   duration = 2;
@@ -146,12 +146,12 @@ resetbutton.addEventListener("click", () => {
 // change tempo
 tempoChange.addEventListener("click", () => {
   let tempoValue = parseInt(tempoInput.value);
-  if (tempoValue < 60 || tempoValue > 400) {
-    alert("invalid value, please enter between 60-200 bpm");
+  if (tempoValue < 60 || tempoValue > 1000) {
+    alert("invalid value, please enter between 60-1000 bpm");
     return;
   }
   let outputTempo = document.querySelector(".current-tempo");
-  let bpm = 60000 / tempoValue;
+  let bpm = 30000 / tempoValue;
   outputTempo.innerHTML = tempoValue;
   tempo = bpm;
 });
