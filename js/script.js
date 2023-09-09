@@ -118,7 +118,10 @@ function importPattern(patternData) {
       if (patternArray[n] === 1) {
         perPattern.children[n].style.backgroundColor = "green";
       } else {
-        perPattern.children[n].style.backgroundColor = "grey";
+        perPattern.children[n].style.backgroundColor = difNote(
+          perPattern.children[n],
+          false
+        );
       }
     }
     patContainer.appendChild(perPattern);
@@ -171,7 +174,8 @@ function download(content, fileName) {
 costumizeButton.addEventListener("click", () => {
   if (!confirm("are you sure?")) return;
   let patContainer = document.querySelector(".pattern");
-  let points = 10;
+  // START EDITING HERE
+  let points = 0;
   let state = true;
   for (children of patContainer.children) {
     for (let i = 0; i < children.children.length; i++) {
@@ -179,7 +183,7 @@ costumizeButton.addEventListener("click", () => {
         children.children[i].style.backgroundColor = "green";
       }
     }
-    if (points == 10) {
+    if (points == 0) {
       state = true;
     } else if (points == notesLength) {
       state = false;
@@ -189,3 +193,19 @@ costumizeButton.addEventListener("click", () => {
     console.log(points);
   }
 });
+
+function generateFibonacci(n) {
+  const fibonacciArray = [0, 1]; // Initialize with the first two Fibonacci numbers
+
+  for (let i = 2; i <= n; i++) {
+    const nextFibonacci = fibonacciArray[i - 1] + fibonacciArray[i - 2];
+    fibonacciArray.push(nextFibonacci);
+  }
+
+  return fibonacciArray;
+}
+
+// console.log(generateFibonacci(50));
+
+// let hiddenValue = Math.floor(Math.random() * 100);
+// console.log(hiddenValue ** 2);

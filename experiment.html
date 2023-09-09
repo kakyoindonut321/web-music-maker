@@ -1,83 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>experiment</title>
     <style>
-        .parent {
-            display: grid;
-            grid-template-columns: auto auto auto;
-            width: 300px;
-        }
-        
-        .elements {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-            border: 1px solid black;
-        }
+      /* KEYBOARD */
+
+      body {
+        /* background-color: #282843; */
+      }
+
+      .window {
+        position: relative;
+        display: flex;
+        height: 480px;
+        width: 1200px;
+        background-color: #282843;
+        padding: 10px;
+        overflow: scroll;
+      }
+
+      .keyboard {
+        position: absolute;
+        width: 100px;
+        left: 0;
+        z-index: 10;
+        transition: left 0.05s;
+        /* border: 1px solid; */
+      }
+
+      .empty-space {
+        width: 90px;
+      }
+      /* applied for both keyboard and pattern */
+
+      .grid-height {
+        height: 500px;
+      }
+
+      .notes {
+        display: grid;
+        grid-template-columns: auto;
+        /* gap: 10px; */
+        width: 100px;
+        height: 100%;
+        /* background-color: black; */
+      }
+
+      .note {
+        margin: 0;
+        padding: 0;
+        border: none;
+        width: 100%;
+        height: 30px;
+      }
+
+      .note:hover {
+        background-color: grey;
+      }
+
+      .note:active {
+        background-color: white;
+      }
+
+      .white-note {
+        background-color: white;
+        color: black;
+      }
+
+      .black-note {
+        background-color: black;
+        color: white;
+      }
+
+      .note-octave {
+        background-color: #dddd;
+      }
+      /* PATTERN */
+
+      .pattern {
+        display: flex;
+        width: 900px;
+      }
+
+      .pattern-column {
+        display: grid;
+        grid-template-columns: auto;
+        /* gap: 10px; */
+        width: 50px;
+        height: 100%;
+        transition: border 0.5s;
+        /* background-color: red; */
+        /* border-left: 1px solid black; */
+        /* box-sizing: border-box; */
+      }
+
+      .pattern-column:hover {
+        box-shadow: 0px 0px 10px solid black;
+      }
+
+      .single-pattern {
+        margin: 0;
+        padding: 0;
+        border: none;
+        width: 50px;
+        height: 30px;
+        /* background-color: grey; */
+        border-bottom: 2px solid #282843;
+        border-left: 1px solid #282843;
+        box-sizing: border-box;
+      }
+
+      .wn {
+        background-color: grey;
+      }
+
+      .bn {
+        background-color: #505050;
+      }
+
+      .single-pattern:hover {
+        background-color: white;
+      }
+
+      .single-pattern:active {
+        background-color: grey;
+      }
     </style>
-</head>
+  </head>
 
-<body ondragstart="return false;" ondrop="return false;">
-    <div class="parent">
-        <div class="elements lone"></div>
-        <div class="elements"></div>
-        <div class="elements"></div>
-        <div class="elements"></div>
-        <div class="elements"></div>
-        <div class="elements"></div>
-        <div class="elements"></div>
-        <div class="elements"></div>
-        <div class="elements"></div>
+  <body>
+    <div class="window">
+      <div class="keyboard">
+        <div class="notes">
+          <!-- C2 -->
+          <button class="note white-note note-octave" id="C-2 ">C2</button>
+          <button class="note black-note" id="C#-2 ">C#2</button>
+          <button class="note white-note" id="D-2 ">D2</button>
+          <button class="note black-note" id="D#-2 ">D#2</button>
+          <button class="note white-note" id="E-2 ">E2</button>
+          <button class="note white-note" id="F-2 ">F2</button>
+          <button class="note black-note" id="F#-2 ">F#2</button>
+          <button class="note white-note" id="G-2 ">G2</button>
+          <button class="note black-note" id="G#-2 ">G#2</button>
+          <button class="note white-note" id="A-2 ">A2</button>
+          <button class="note black-note" id="A#-2 ">A#2</button>
+          <button class="note white-note" id="B-2 ">B2</button>
+          <!-- C3 -->
+          <button class="note white-note note-octave" id="C-3 ">C3</button>
+          <button class="note black-note" id="C#-3 ">C#3</button>
+          <button class="note white-note" id="D-3 ">D3</button>
+          <button class="note black-note" id="D#-3 ">D#3</button>
+          <button class="note white-note" id="E-3 ">E3</button>
+          <button class="note white-note" id="F-3 ">F3</button>
+          <button class="note black-note" id="F#-3 ">F#3</button>
+          <button class="note white-note" id="G-3 ">G3</button>
+          <button class="note black-note" id="G#-3 ">G#3</button>
+          <button class="note white-note" id="A-3 ">A3</button>
+          <button class="note black-note" id="A#-3 ">A#3</button>
+          <button class="note white-note" id="B-3 ">B3</button>
+          <!-- C4 -->
+          <button class="note white-note note-octave" id="C-4 ">C4</button>
+          <button class="note black-note" id="C#-4 ">C#4</button>
+          <button class="note white-note" id="D-4 ">D4</button>
+          <button class="note black-note" id="D#-4 ">D#4</button>
+          <button class="note white-note" id="E-4 ">E4</button>
+          <button class="note white-note" id="F-4 ">F4</button>
+          <button class="note black-note" id="F#-4 ">F#4</button>
+          <button class="note white-note" id="G-4 ">G4</button>
+          <button class="note black-note" id="G#-4 ">G#4</button>
+          <button class="note white-note" id="A-4 ">A4</button>
+          <button class="note black-note" id="A#-4 ">A#4</button>
+          <button class="note white-note" id="B-4 ">B4</button>
+          <!-- C5 -->
+          <button class="note white-note note-octave" id="C-5 ">C5</button>
+          <button class="note black-note" id="C#-5 ">C#5</button>
+          <button class="note white-note" id="D-5 ">D5</button>
+          <button class="note black-note" id="D#-5 ">D#5</button>
+          <button class="note white-note" id="E-5 ">E5</button>
+          <button class="note white-note" id="F-5 ">F5</button>
+          <button class="note black-note" id="F#-5 ">F#5</button>
+          <button class="note white-note" id="G-5 ">G5</button>
+          <button class="note black-note" id="G#-5 ">G#5</button>
+          <button class="note white-note" id="A-5 ">A5</button>
+          <button class="note black-note" id="A#-5 ">A#5</button>
+          <button class="note white-note" id="B-5 ">B5</button>
+          <!-- C6 -->
+          <button class="note white-note" id="C-6 ">C6</button>
+        </div>
+      </div>
+      <div class="empty-space"></div>
+      <div class="pattern">
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern octave" id="C-6 "></button>
+        </div>
+      </div>
     </div>
+    <button class="activate">activatt</button>
     <script>
-        let paret = document.querySelector(".parent");
-        let items = document.querySelectorAll(".elements");
-        let lone = document.querySelector(".lone");
-        var drag = false;
-        var state = null;
-        window.addEventListener("mousedown", () => {
-            drag = true;
-        });
-        window.addEventListener("mouseup", () => {
-            drag = false;
-            state = null;
-        });
-
-        function eventgiver(items) {
-            items.forEach((item) => {
-                item.addEventListener("mouseenter", () => {
-                    if (drag) {
-                        if (item.style.backgroundColor != "green" && state != "red") {
-                            item.style.backgroundColor = "green";
-                            state = "green";
-                        } else if (
-                            item.style.backgroundColor == "green" &&
-                            state != "green"
-                        ) {
-                            item.style.backgroundColor = "red";
-                            state = "red";
-                        }
-                    }
-                });
-                item.addEventListener("mousedown", () => {
-                    if (item.style.backgroundColor != "green" && state != "red") {
-                        item.style.backgroundColor = "green";
-                        state = "green";
-                    } else if (
-                        item.style.backgroundColor == "green" &&
-                        state != "green"
-                    ) {
-                        item.style.backgroundColor = "red";
-                        state = "red";
-                    }
-                });
-            });
+      let pinoy = document.querySelector(".window");
+      let keybord = document.querySelector(".keyboard");
+      let activat = document.querySelector(".activate");
+      pinoy.addEventListener("scroll", () => {
+        const horizontal = pinoy.scrollLeft; // Getting horizontal scrollbar position
+        keybord.style.left = horizontal + "px";
+        // console.log(horizontal + "px");
+      });
+      let toot = true;
+      activat.addEventListener("click", () => {
+        if (toot) {
+          keybord.style.left = "100px";
+          toot = false;
+        } else {
+          keybord.style.left = "0px";
+          toot = true;
         }
+      });
     </script>
-</body>
-
+  </body>
 </html>

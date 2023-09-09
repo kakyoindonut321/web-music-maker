@@ -25,3 +25,5 @@ This is an online music maker where you can make and draw any music you want, if
 - YOU CAN NOW DRAG AND DRAW, THAT'S RIGHT, DRAG AND DRAW, NO MORE PAIN CLICKING
 
 - we decided to change the tempo from 1/4 to 1/8 to be more "accurate"
+
+- I've made a big mistake last commit, I didn't know how sampling rate works so I accidentally set it to 2000 and now the higher note sound shite
