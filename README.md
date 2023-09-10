@@ -6,7 +6,8 @@ This is an online music maker where you can make and draw any music you want, if
 
 ## Features
 
-- 4 different musical instrument, all generated using math instead of audio file
+- ~~4 different musical instrument, all generated using math instead of audio file~~
+- fuck all of that, slow af, going instead for a good ol' manually changing .wav files
 - change _patterns_ length and tempo(bpm)
 - ~~save your patterns in our database~~ _abandoned_
 - many more
@@ -26,4 +27,8 @@ This is an online music maker where you can make and draw any music you want, if
 
 - we decided to change the tempo from 1/4 to 1/8 to be more "accurate"
 
-- I've made a big mistake last commit, I didn't know how sampling rate works so I accidentally set it to 2000 and now the higher note sound shite
+- the last library sucks, yeah it's cool the sound was generated using math, but my implementation makes it performance heavy, so I abandoning all that
+
+- we're now using tone JS
+
+- CSS time, there's quite a problem on making the pattern's "off" color a different grey, but I fixed that by making the code thinks it's the same color(technically not)

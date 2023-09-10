@@ -3,273 +3,208 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>experiment</title>
+    <title>Document</title>
     <style>
-      /* KEYBOARD */
-
-      body {
-        /* background-color: #282843; */
+      @font-face {
+        font-family: sevenSegment;
+        src: url("/font/seven-segment.ttf");
       }
 
-      .window {
-        position: relative;
+      .board {
         display: flex;
-        height: 480px;
-        width: 1200px;
-        background-color: #282843;
+        background-color: rgb(146, 146, 146);
+        width: 400px;
         padding: 10px;
-        overflow: scroll;
       }
 
-      .keyboard {
-        position: absolute;
-        width: 100px;
-        left: 0;
-        z-index: 10;
-        transition: left 0.05s;
-        /* border: 1px solid; */
+      .pattern-length {
+        padding: 1px;
+        background-color: darkslategray;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.9) inset;
+        border: 1px solid #182929;
+        color: #c6c6c6;
+        border-radius: 3px;
+        width: 40px;
+        text-align: center;
+        font-size: 25px;
+        font-family: sevenSegment;
       }
 
-      .empty-space {
-        width: 90px;
-      }
-      /* applied for both keyboard and pattern */
-
-      .grid-height {
-        height: 500px;
-      }
-
-      .notes {
-        display: grid;
-        grid-template-columns: auto;
-        /* gap: 10px; */
-        width: 100px;
-        height: 100%;
-        /* background-color: black; */
+      .tempo {
+        padding: 1px;
+        background-color: #f59972;
+        box-shadow: 0 0 10px #dc2727 inset;
+        border: 1px solid #b92c2c;
+        color: darkred;
+        border-radius: 2px;
+        width: 40px;
+        text-align: center;
+        font-size: 25px;
+        font-family: sevenSegment;
       }
 
-      .note {
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
         margin: 0;
-        padding: 0;
-        border: none;
-        width: 100%;
-        height: 30px;
+      }
+      /* Firefox */
+
+      input[type="number"] {
+        -moz-appearance: textfield;
       }
 
-      .note:hover {
-        background-color: grey;
+      input:focus,
+      select:focus,
+      textarea:focus,
+      button:focus {
+        outline: none;
       }
 
-      .note:active {
-        background-color: white;
+      #ictrl {
+        cursor: n-resize;
+        pointer-events: visible;
       }
 
-      .white-note {
-        background-color: white;
-        color: black;
-      }
-
-      .black-note {
-        background-color: black;
-        color: white;
-      }
-
-      .note-octave {
-        background-color: #dddd;
-      }
-      /* PATTERN */
-
-      .pattern {
+      .control {
         display: flex;
-        width: 900px;
+        padding: 10px;
       }
 
-      .pattern-column {
-        display: grid;
-        grid-template-columns: auto;
-        /* gap: 10px; */
-        width: 50px;
-        height: 100%;
-        transition: border 0.5s;
-        /* background-color: red; */
-        /* border-left: 1px solid black; */
-        /* box-sizing: border-box; */
-      }
-
-      .pattern-column:hover {
-        box-shadow: 0px 0px 10px solid black;
-      }
-
-      .single-pattern {
-        margin: 0;
-        padding: 0;
+      .control-button {
         border: none;
+        margin: 0;
         width: 50px;
-        height: 30px;
-        /* background-color: grey; */
-        border-bottom: 2px solid #282843;
-        border-left: 1px solid #282843;
-        box-sizing: border-box;
+        height: 37px;
+        padding: 5px;
+        background-color: #374f4f;
+      }
+      /* .control-button svg {
+        padding: 0;
+        margin: 0;
+      } */
+      /* .control-button:hover {
+        background-color: #1d1f1f;
       }
 
-      .wn {
-        background-color: grey;
+      .control-button:active {
+        background-color: #182929;
+      } */
+
+      .play {
+        border: 2px solid #0f1a1a;
+        border-top: 1px solid #0f1a1a;
+        border-left: 1px solid #0f1a1a;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        box-shadow: -1px -5px 10px #243232 inset;
       }
 
-      .bn {
-        background-color: #505050;
-      }
-
-      .single-pattern:hover {
-        background-color: white;
-      }
-
-      .single-pattern:active {
-        background-color: grey;
+      .stop {
+        border: 2px solid #0f1a1a;
+        border-top: 1px solid #0f1a1a;
+        border-right: 1px solid #0f1a1a;
+        box-shadow: -1px -5px 10px #243232 inset;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
       }
     </style>
   </head>
 
   <body>
-    <div class="window">
-      <div class="keyboard">
-        <div class="notes">
-          <!-- C2 -->
-          <button class="note white-note note-octave" id="C-2 ">C2</button>
-          <button class="note black-note" id="C#-2 ">C#2</button>
-          <button class="note white-note" id="D-2 ">D2</button>
-          <button class="note black-note" id="D#-2 ">D#2</button>
-          <button class="note white-note" id="E-2 ">E2</button>
-          <button class="note white-note" id="F-2 ">F2</button>
-          <button class="note black-note" id="F#-2 ">F#2</button>
-          <button class="note white-note" id="G-2 ">G2</button>
-          <button class="note black-note" id="G#-2 ">G#2</button>
-          <button class="note white-note" id="A-2 ">A2</button>
-          <button class="note black-note" id="A#-2 ">A#2</button>
-          <button class="note white-note" id="B-2 ">B2</button>
-          <!-- C3 -->
-          <button class="note white-note note-octave" id="C-3 ">C3</button>
-          <button class="note black-note" id="C#-3 ">C#3</button>
-          <button class="note white-note" id="D-3 ">D3</button>
-          <button class="note black-note" id="D#-3 ">D#3</button>
-          <button class="note white-note" id="E-3 ">E3</button>
-          <button class="note white-note" id="F-3 ">F3</button>
-          <button class="note black-note" id="F#-3 ">F#3</button>
-          <button class="note white-note" id="G-3 ">G3</button>
-          <button class="note black-note" id="G#-3 ">G#3</button>
-          <button class="note white-note" id="A-3 ">A3</button>
-          <button class="note black-note" id="A#-3 ">A#3</button>
-          <button class="note white-note" id="B-3 ">B3</button>
-          <!-- C4 -->
-          <button class="note white-note note-octave" id="C-4 ">C4</button>
-          <button class="note black-note" id="C#-4 ">C#4</button>
-          <button class="note white-note" id="D-4 ">D4</button>
-          <button class="note black-note" id="D#-4 ">D#4</button>
-          <button class="note white-note" id="E-4 ">E4</button>
-          <button class="note white-note" id="F-4 ">F4</button>
-          <button class="note black-note" id="F#-4 ">F#4</button>
-          <button class="note white-note" id="G-4 ">G4</button>
-          <button class="note black-note" id="G#-4 ">G#4</button>
-          <button class="note white-note" id="A-4 ">A4</button>
-          <button class="note black-note" id="A#-4 ">A#4</button>
-          <button class="note white-note" id="B-4 ">B4</button>
-          <!-- C5 -->
-          <button class="note white-note note-octave" id="C-5 ">C5</button>
-          <button class="note black-note" id="C#-5 ">C#5</button>
-          <button class="note white-note" id="D-5 ">D5</button>
-          <button class="note black-note" id="D#-5 ">D#5</button>
-          <button class="note white-note" id="E-5 ">E5</button>
-          <button class="note white-note" id="F-5 ">F5</button>
-          <button class="note black-note" id="F#-5 ">F#5</button>
-          <button class="note white-note" id="G-5 ">G5</button>
-          <button class="note black-note" id="G#-5 ">G#5</button>
-          <button class="note white-note" id="A-5 ">A5</button>
-          <button class="note black-note" id="A#-5 ">A#5</button>
-          <button class="note white-note" id="B-5 ">B5</button>
-          <!-- C6 -->
-          <button class="note white-note" id="C-6 ">C6</button>
-        </div>
+    <div class="board">
+      <div class="control">
+        <button class="play control-button">
+          <svg
+            class="playsvg"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            style="fill: #dddddd"
+          >
+            <path d="M7 6v12l10-6z"></path>
+          </svg>
+        </button>
+        <button class="stop control-button">
+          <svg
+            class="stopsvg"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            style="fill: #dddddd"
+          >
+            <path d="M7 7h10v10H7z"></path>
+          </svg>
+        </button>
       </div>
-      <div class="empty-space"></div>
-      <div class="pattern">
-        <div class="pattern-column">
-          <!-- C2 -->
-          <button class="single-pattern wn octave" id="C-2 "></button>
-          <button class="single-pattern bn" id="C#-2 "></button>
-          <button class="single-pattern wn" id="D-2 "></button>
-          <button class="single-pattern bn" id="D#-2 "></button>
-          <button class="single-pattern wn" id="E-2 "></button>
-          <button class="single-pattern wn" id="F-2 "></button>
-          <button class="single-pattern bn" id="F#-2 "></button>
-          <button class="single-pattern wn" id="G-2 "></button>
-          <button class="single-pattern bn" id="G#-2 "></button>
-          <button class="single-pattern wn" id="A-2 "></button>
-          <button class="single-pattern bn" id="A#-2 "></button>
-          <button class="single-pattern wn" id="B-2 "></button>
-          <!-- C3 -->
-          <button class="single-pattern wn octave" id="C-3 "></button>
-          <button class="single-pattern bn" id="C#-3 "></button>
-          <button class="single-pattern wn" id="D-3 "></button>
-          <button class="single-pattern bn" id="D#-3 "></button>
-          <button class="single-pattern wn" id="E-3 "></button>
-          <button class="single-pattern wn" id="F-3 "></button>
-          <button class="single-pattern bn" id="F#-3 "></button>
-          <button class="single-pattern wn" id="G-3 "></button>
-          <button class="single-pattern bn" id="G#-3 "></button>
-          <button class="single-pattern wn" id="A-3 "></button>
-          <button class="single-pattern bn" id="A#-3 "></button>
-          <button class="single-pattern wn" id="B-3 "></button>
-          <!-- C4 -->
-          <button class="single-pattern wn octave" id="C-4 "></button>
-          <button class="single-pattern bn" id="C#-4 "></button>
-          <button class="single-pattern wn" id="D-4 "></button>
-          <button class="single-pattern bn" id="D#-4 "></button>
-          <button class="single-pattern wn" id="E-4 "></button>
-          <button class="single-pattern wn" id="F-4 "></button>
-          <button class="single-pattern bn" id="F#-4 "></button>
-          <button class="single-pattern wn" id="G-4 "></button>
-          <button class="single-pattern bn" id="G#-4 "></button>
-          <button class="single-pattern wn" id="A-4 "></button>
-          <button class="single-pattern bn" id="A#-4 "></button>
-          <button class="single-pattern wn" id="B-4 "></button>
-          <!-- C5 -->
-          <button class="single-pattern wn octave" id="C-5 "></button>
-          <button class="single-pattern bn" id="C#-5 "></button>
-          <button class="single-pattern wn" id="D-5 "></button>
-          <button class="single-pattern bn" id="D#-5 "></button>
-          <button class="single-pattern wn" id="E-5 "></button>
-          <button class="single-pattern wn" id="F-5 "></button>
-          <button class="single-pattern bn" id="F#-5 "></button>
-          <button class="single-pattern wn" id="G-5 "></button>
-          <button class="single-pattern bn" id="G#-5 "></button>
-          <button class="single-pattern wn" id="A-5 "></button>
-          <button class="single-pattern bn" id="A#-5 "></button>
-          <button class="single-pattern wn" id="B-5 "></button>
-          <!-- C6 -->
-          <button class="single-pattern octave" id="C-6 "></button>
-        </div>
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          style="fill: rgba(0, 0, 0, 1)"
+        >
+          <path d="M8 7h3v10H8zm5 0h3v10h-3z"></path>
+        </svg>
+      </div>
+      <div>
+        <input value="10" type="number" class="pattern-length" />
+      </div>
+      <div>
+        <input value="120" type="number" class="tempo" readonly />
       </div>
     </div>
-    <button class="activate">activatt</button>
     <script>
-      let pinoy = document.querySelector(".window");
-      let keybord = document.querySelector(".keyboard");
-      let activat = document.querySelector(".activate");
-      pinoy.addEventListener("scroll", () => {
-        const horizontal = pinoy.scrollLeft; // Getting horizontal scrollbar position
-        keybord.style.left = horizontal + "px";
-        // console.log(horizontal + "px");
-      });
-      let toot = true;
-      activat.addEventListener("click", () => {
-        if (toot) {
-          keybord.style.left = "100px";
-          toot = false;
-        } else {
-          keybord.style.left = "0px";
-          toot = true;
-        }
-      });
+      function init() {
+        mouseCtrl(".tempo", scaledIntCtrl);
+      }
+
+      function mouseCtrl(n, setCtrl) {
+        var ctrl; // DOM object for the input control
+        var startpos; // starting mouse position
+        var startval; // starting input control value
+        // find the input element to allow mouse control on
+        ctrl = document.querySelector(n);
+        // on mousedown start tracking mouse relative position
+        ctrl.onmousedown = function (e) {
+          startpos = e.clientY;
+          startval = parseFloat(ctrl.value);
+          if (isNaN(startval)) startval = 0;
+          document.onmousemove = function (e) {
+            var delta = Math.ceil(e.clientY - startpos);
+            setCtrl(ctrl, startval, delta);
+          };
+          document.onmouseup = function () {
+            document.onmousemove = null; // remove mousemove to stop tracking
+          };
+        };
+      }
+
+      // takes current value and relative mouse coordinate as arguments
+      function scaledIntCtrl(o, i, x) {
+        var incVal = Math.round(Math.sign(x) * Math.pow(Math.abs(x) / 10, 1.6));
+        // document.getElementById("log").innerHTML =
+        //   x + " " + incVal + ", i=" + i;
+        var newVal = i - incVal;
+        if (newVal < 0) newVal = 0;
+        if (newVal > 400) newVal = 400;
+        if (Math.abs(incVal) > 1) o.value = newVal; // allow small deadzone
+      }
+
+      // if (window.addEventListener) {
+      //   /*W3C*/
+      //   window.addEventListener("load", init, false);
+      // } else if (window.attachEvent) {
+      //   /*MS*/
+      //   window.attachEvent("onload", init);
+      // } else {
+      //   /*def*/
+      //   window.onload = init;
+      // }
+      init();
     </script>
   </body>
 </html>
