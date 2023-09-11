@@ -2,9 +2,37 @@ let exportBut = document.querySelector(".export-button");
 let importBut = document.querySelector(".import-button");
 let songname = document.querySelector(".songname");
 let fileInput = document.getElementById("inputfile");
-let costumizeButton = document.querySelector(".costumizebutton");
+// let costumizeButton = document.querySelector(".costumizebutton");
 var fr = new FileReader();
 let notesLength = 49;
+
+let noteVisibility = document.querySelector(".note-visibility");
+let toggleVisibility = true;
+noteVisibility.addEventListener("click", () => {
+  if (toggleVisibility) {
+    noteVisibility.querySelector("svg").style.fill = "darkslategray";
+    noteVisibility.classList.replace("off-button", "blue-glow");
+    toggleVisibility = false;
+  } else {
+    noteVisibility.querySelector("svg").style.fill = "#dddddd";
+    noteVisibility.classList.replace("blue-glow", "off-button");
+    toggleVisibility = true;
+  }
+});
+
+let repeat = document.querySelector(".repeat-button");
+let repeatToggle = true;
+repeat.addEventListener("click", () => {
+  if (repeatToggle) {
+    repeat.querySelector("svg").style.fill = "darkslategray";
+    repeat.classList.replace("off-button", "blue-glow");
+    repeatToggle = false;
+  } else {
+    repeat.querySelector("svg").style.fill = "#dddddd";
+    repeat.classList.replace("blue-glow", "off-button");
+    repeatToggle = true;
+  }
+});
 
 exportBut.addEventListener("click", exportPattern);
 importBut.addEventListener("click", () => {
@@ -73,13 +101,10 @@ function exportPattern() {
     let currentColumn = allPattern[i].children;
     insideray = [];
     for (let b = 0; b < currentColumn.length; b++) {
-      if (
-        currentColumn[b].style.backgroundColor == "grey" ||
-        currentColumn[b].style.backgroundColor == ""
-      ) {
-        insideray.push(0);
-      } else {
+      if (currentColumn[b].style.backgroundColor == "rgb(169, 217, 179)") {
         insideray.push(1);
+      } else {
+        insideray.push(0);
       }
     }
     arraydata.push(insideray);
@@ -112,11 +137,12 @@ function importPattern(patternData) {
   // let = patternData.bigText;
 
   patContainer.innerHTML = "";
+  document.querySelector(".pattern-length").value = arrayData.length;
   for (patternArray of arrayData) {
     let perPattern = referencePatt.cloneNode(true);
     for (let n = 0; n < patternArray.length; n++) {
       if (patternArray[n] === 1) {
-        perPattern.children[n].style.backgroundColor = "green";
+        perPattern.children[n].style.backgroundColor = "rgb(169, 217, 179)";
       } else {
         perPattern.children[n].style.backgroundColor = difNote(
           perPattern.children[n],
@@ -171,28 +197,28 @@ function download(content, fileName) {
 }
 
 // CUSTOME CODE HERE
-costumizeButton.addEventListener("click", () => {
-  if (!confirm("are you sure?")) return;
-  let patContainer = document.querySelector(".pattern");
-  // START EDITING HERE
-  let points = 0;
-  let state = true;
-  for (children of patContainer.children) {
-    for (let i = 0; i < children.children.length; i++) {
-      if (i == points) {
-        children.children[i].style.backgroundColor = "green";
-      }
-    }
-    if (points == 0) {
-      state = true;
-    } else if (points == notesLength) {
-      state = false;
-    }
+// costumizeButton.addEventListener("click", () => {
+//   if (!confirm("are you sure?")) return;
+//   let patContainer = document.querySelector(".pattern");
+//   // START EDITING HERE
+//   let points = 0;
+//   let state = true;
+//   for (children of patContainer.children) {
+//     for (let i = 0; i < children.children.length; i++) {
+//       if (i == points) {
+//         children.children[i].style.backgroundColor = "green";
+//       }
+//     }
+//     if (points == 0) {
+//       state = true;
+//     } else if (points == notesLength) {
+//       state = false;
+//     }
 
-    state ? points++ : points--;
-    console.log(points);
-  }
-});
+//     state ? points++ : points--;
+//     console.log(points);
+//   }
+// });
 
 function generateFibonacci(n) {
   const fibonacciArray = [0, 1]; // Initialize with the first two Fibonacci numbers

@@ -9,50 +9,100 @@
   </head>
 
   <body>
-    <!-- <button class="testbutton">click before playing</button> -->
-    <div class="settings">
-      <div class="setting-option">
-        <h4 style="padding: 0; margin: 0">
-          current length: <span class="current-length">10</span>
-        </h4>
-        <input
-          type="number"
-          class="pattern-length"
-          name="pattern-length"
-          min="1"
-          max="100"
-          placeholder="pattern length(1-100) "
-        />
+    <div class="panel">
+      <div class="board">
+        <div class="main-control">
+          <div class="firstrow">
+            <div class="pattern-control">
+              <input value="10" type="number" class="pattern-length" />
+              <button class="pattern-change">+</button>
+            </div>
+            <div>
+              <input value="120" type="number" class="tempo" readonly />
+            </div>
+            <button class="note-visibility off-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="fill: #dddddd"
+              >
+                <path
+                  d="M12 19c.946 0 1.81-.103 2.598-.281l-1.757-1.757c-.273.021-.55.038-.841.038-5.351 0-7.424-3.846-7.926-5a8.642 8.642 0 0 1 1.508-2.297L4.184 8.305c-1.538 1.667-2.121 3.346-2.132 3.379a.994.994 0 0 0 0 .633C2.073 12.383 4.367 19 12 19zm0-14c-1.837 0-3.346.396-4.604.981L3.707 2.293 2.293 3.707l18 18 1.414-1.414-3.319-3.319c2.614-1.951 3.547-4.615 3.561-4.657a.994.994 0 0 0 0-.633C21.927 11.617 19.633 5 12 5zm4.972 10.558-2.28-2.28c.19-.39.308-.819.308-1.278 0-1.641-1.359-3-3-3-.459 0-.888.118-1.277.309L8.915 7.501A9.26 9.26 0 0 1 12 7c5.351 0 7.424 3.846 7.926 5-.302.692-1.166 2.342-2.954 3.558z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <!--  -->
+          <div class="secondrow">
+            <div class="control">
+              <button class="play control-button">
+                <svg
+                  class="playsvg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  style="fill: #dddddd"
+                >
+                  <path d="M7 6v12l10-6z"></path>
+                </svg>
+                <svg
+                  class="pausesvg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  style="fill: #dddddd; display: none"
+                >
+                  <path d="M8 7h3v10H8zm5 0h3v10h-3z"></path>
+                </svg>
+              </button>
+              <button class="stop control-button">
+                <svg
+                  class="stopsvg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  style="fill: #dddddd"
+                >
+                  <path d="M7 7h10v10H7z"></path>
+                </svg>
+              </button>
+            </div>
+            <button class="repeat-button off-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="fill: #dddddd"
+              >
+                <path
+                  d="M21 6h-5v2h4v9H4V8h5v3l5-4-5-4v3H3a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z"
+                ></path>
+              </svg>
+            </button>
+            <button class="resetbutton off-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="fill: #dddddd"
+              >
+                <path
+                  d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
 
-        <button class="pattern-change">change pattern length</button>
-      </div>
-      <div class="setting-option">
-        <h4 style="padding: 0; margin: 0">
-          current tempo: <span class="current-tempo">120</span>
-        </h4>
-        <input
-          type="number"
-          class="temput"
-          name="temput"
-          min="60"
-          max="200"
-          placeholder="tempo is in 1/4(60-400 bpm) "
-        />
-        <button class="tempo-change">change tempo</button>
-      </div>
-      <div class="setting-option">
-        <h4 style="padding: 0; margin: 0">toggle note visibility</h4>
-        <button class="note-visibility">Hide notes</button>
-      </div>
-      <!-- <div class="setting-option ">
-        <h4 style="padding: 0; margin: 0 ">change instrument</h4>
-        <select name="instrument " id="instrument " class="instrument ">
-          <option value="0 ">Piano</option>
-          <option value="1 ">Organ</option>
-          <option value="2 ">Guitar</option>
-          <option value="3 ">Synth</option>
-        </select>
-      </div> -->
+      <!-- EXPORT IMPORT -->
       <div class="save">
         <div class="export save-option">
           <p style="margin: 0">export pattern</p>
@@ -67,9 +117,8 @@
         </div>
       </div>
     </div>
-    <button class="playbutton">PLAY</button>
-    <button class="resetbutton">RESET</button>
-    <button class="costumizebutton">costumize(temporary)</button>
+
+    <!-- <button class="costumizebutton">costumize(temporary)</button> -->
     <div class="window">
       <div class="keyboard grid-height">
         <div class="notes">
@@ -137,6 +186,1294 @@
       <!-- GRID -->
       <!--  -->
       <div class="pattern">
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
+        <div class="pattern-column">
+          <!-- C2 -->
+          <button class="single-pattern wn octave" id="C-2 "></button>
+          <button class="single-pattern bn" id="C#-2 "></button>
+          <button class="single-pattern wn" id="D-2 "></button>
+          <button class="single-pattern bn" id="D#-2 "></button>
+          <button class="single-pattern wn" id="E-2 "></button>
+          <button class="single-pattern wn" id="F-2 "></button>
+          <button class="single-pattern bn" id="F#-2 "></button>
+          <button class="single-pattern wn" id="G-2 "></button>
+          <button class="single-pattern bn" id="G#-2 "></button>
+          <button class="single-pattern wn" id="A-2 "></button>
+          <button class="single-pattern bn" id="A#-2 "></button>
+          <button class="single-pattern wn" id="B-2 "></button>
+          <!-- C3 -->
+          <button class="single-pattern wn octave" id="C-3 "></button>
+          <button class="single-pattern bn" id="C#-3 "></button>
+          <button class="single-pattern wn" id="D-3 "></button>
+          <button class="single-pattern bn" id="D#-3 "></button>
+          <button class="single-pattern wn" id="E-3 "></button>
+          <button class="single-pattern wn" id="F-3 "></button>
+          <button class="single-pattern bn" id="F#-3 "></button>
+          <button class="single-pattern wn" id="G-3 "></button>
+          <button class="single-pattern bn" id="G#-3 "></button>
+          <button class="single-pattern wn" id="A-3 "></button>
+          <button class="single-pattern bn" id="A#-3 "></button>
+          <button class="single-pattern wn" id="B-3 "></button>
+          <!-- C4 -->
+          <button class="single-pattern wn octave" id="C-4 "></button>
+          <button class="single-pattern bn" id="C#-4 "></button>
+          <button class="single-pattern wn" id="D-4 "></button>
+          <button class="single-pattern bn" id="D#-4 "></button>
+          <button class="single-pattern wn" id="E-4 "></button>
+          <button class="single-pattern wn" id="F-4 "></button>
+          <button class="single-pattern bn" id="F#-4 "></button>
+          <button class="single-pattern wn" id="G-4 "></button>
+          <button class="single-pattern bn" id="G#-4 "></button>
+          <button class="single-pattern wn" id="A-4 "></button>
+          <button class="single-pattern bn" id="A#-4 "></button>
+          <button class="single-pattern wn" id="B-4 "></button>
+          <!-- C5 -->
+          <button class="single-pattern wn octave" id="C-5 "></button>
+          <button class="single-pattern bn" id="C#-5 "></button>
+          <button class="single-pattern wn" id="D-5 "></button>
+          <button class="single-pattern bn" id="D#-5 "></button>
+          <button class="single-pattern wn" id="E-5 "></button>
+          <button class="single-pattern wn" id="F-5 "></button>
+          <button class="single-pattern bn" id="F#-5 "></button>
+          <button class="single-pattern wn" id="G-5 "></button>
+          <button class="single-pattern bn" id="G#-5 "></button>
+          <button class="single-pattern wn" id="A-5 "></button>
+          <button class="single-pattern bn" id="A#-5 "></button>
+          <button class="single-pattern wn" id="B-5 "></button>
+          <!-- C6 -->
+          <button class="single-pattern wn octave" id="C-6 "></button>
+        </div>
         <div class="pattern-column">
           <!-- C2 -->
           <button class="single-pattern wn octave" id="C-2 "></button>

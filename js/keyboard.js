@@ -108,13 +108,13 @@ visibilityToggle.addEventListener("click", () => {
     keyboardNotes.forEach((index, value) => {
       index.innerHTML = "";
     });
-    visibilityToggle.innerHTML = "show notes";
+    // visibilityToggle.innerHTML = "show notes";
     visibilityToggleVar = false;
   } else {
     keyboardNotes.forEach((index, value) => {
       index.innerHTML = index.id.replace("-", "");
     });
-    visibilityToggle.innerHTML = "hide notes";
+    // visibilityToggle.innerHTML = "hide notes";
     visibilityToggleVar = true;
   }
 });
@@ -122,12 +122,12 @@ visibilityToggle.addEventListener("click", () => {
 
 // PATTERN
 let patternContainer = document.querySelector(".pattern"),
-  playbutton = document.querySelector(".playbutton"),
+  playbutton = document.querySelector(".play"),
   resetbutton = document.querySelector(".resetbutton"),
   patternChangeButton = document.querySelector(".pattern-change"),
   patternLength = document.querySelector(".pattern-length"),
-  tempoChange = document.querySelector(".tempo-change"),
-  tempoInput = document.querySelector(".temput"),
+  // tempoChange = document.querySelector(".tempo-change"),
+  tempoInput = document.querySelector(".tempo"),
   saving = false;
 
 var tempo = 250,
@@ -148,14 +148,14 @@ window.addEventListener("mouseup", () => {
 
 function difNote(item, activeOrNot) {
   if (item.classList.contains("bn")) {
-    return activeOrNot ? "green" : "grey";
+    return activeOrNot ? "rgb(169, 217, 179)" : "#33444e";
   } else {
-    return activeOrNot ? "green" : "#aaaaaa";
+    return activeOrNot ? "rgb(169, 217, 179)" : "#2d3e48";
   }
 }
 
 function offNoteCheck(state) {
-  if (state == "grey" || state == "#aaaaaa") {
+  if (state == "#33444e" || state == "#2d3e48") {
     return true;
   }
 }
@@ -215,10 +215,6 @@ function eventgiver(items, singleIterable = false) {
       if (drag) {
         if (item.style.backgroundColor != activeNotes && !offNoteCheck(state)) {
           item.style.backgroundColor = activeNotes;
-          // var idSplitted = item.id.split("-");
-          // instrument.play(idSplitted[0], idSplitted[1], duration);
-          // var idSplitted = item.id.replace("-", "");
-          // sampler.triggerAttackRelease(idSplitted, 4);
           var idSplitted = item.id.replace("-", "");
           sampler.triggerAttackRelease(idSplitted, 1);
           state = activeNotes;
@@ -262,14 +258,14 @@ resetbutton.addEventListener("click", () => {
       for (notes of children.children) {
         if (notes.classList.contains("wn")) {
           switch (notes.style.backgroundColor) {
-            case "green":
-              notes.style.backgroundColor = "#aaaaaa";
+            case "rgb(169, 217, 179)":
+              notes.style.backgroundColor = "#2d3e48";
               break;
           }
         } else {
           switch (notes.style.backgroundColor) {
-            case "green":
-              notes.style.backgroundColor = "grey";
+            case "rgb(169, 217, 179)":
+              notes.style.backgroundColor = "#33444e";
               break;
           }
         }
@@ -279,18 +275,78 @@ resetbutton.addEventListener("click", () => {
   }
 });
 
-// change tempo
-tempoChange.addEventListener("click", () => {
+// SCROLLLLLL
+function init() {
+  mouseCtrl(".tempo", scaledIntCtrl);
+}
+
+function mouseCtrl(n, setCtrl) {
+  var ctrl; // DOM object for the input control
+  var startpos; // starting mouse position
+  var startval; // starting input control value
+  // find the input element to allow mouse control on
+  ctrl = document.querySelector(n);
+  // on mousedown start tracking mouse relative position
+  ctrl.onmousedown = function (e) {
+    startpos = e.clientY;
+    startval = parseFloat(ctrl.value);
+    if (isNaN(startval)) startval = 0;
+    document.onmousemove = function (e) {
+      var delta = Math.ceil(e.clientY - startpos);
+      setCtrl(ctrl, startval, delta);
+    };
+    document.onmouseup = function () {
+      changeTempo();
+      document.onmousemove = null; // remove mousemove to stop tracking
+    };
+  };
+}
+
+// takes current value and relative mouse coordinate as arguments
+function scaledIntCtrl(o, i, x) {
+  var incVal = Math.round(Math.sign(x) * Math.pow(Math.abs(x) / 10, 1.6));
+  // document.getElementById("log").innerHTML =
+  //   x + " " + incVal + ", i=" + i;
+  var newVal = i - incVal;
+  if (newVal < 60) newVal = 60;
+  if (newVal > 400) newVal = 400;
+  if (Math.abs(incVal) > 1) o.value = newVal; // allow small deadzone
+}
+
+// if (window.addEventListener) {
+//   /*W3C*/
+//   window.addEventListener("load", init, false);
+// } else if (window.attachEvent) {
+//   /*MS*/
+//   window.attachEvent("onload", init);
+// } else {
+//   /*def*/
+//   window.onload = init;
+// }
+init();
+
+function changeTempo() {
   let tempoValue = parseInt(tempoInput.value);
   if (tempoValue < 60 || tempoValue > 1000) {
     alert("invalid value, please enter between 60-1000 bpm");
     return;
   }
-  let outputTempo = document.querySelector(".current-tempo");
   let bpm = 30000 / tempoValue;
-  outputTempo.innerHTML = tempoValue;
   tempo = bpm;
-});
+}
+
+// change tempo
+// tempoInput.addEventListener("change", () => {
+//   let tempoValue = parseInt(tempoInput.value);
+//   if (eturn;tempoValue < 60 || tempoValue > 1000) {
+//     alert("invalid value, please enter between 60-1000 bpm");
+//     r
+//   }
+//   let outputTempo = document.querySelector(".current-tempo");
+//   let bpm = 30000 / tempoValue;
+//   outputTempo.innerHTML = tempoValue;
+//   tempo = bpm;
+// });
 
 // change pattern length(heavily modified to the point where it doesn't look like the one chatgpt wrote)
 patternChangeButton.addEventListener("click", () => {
@@ -318,7 +374,7 @@ patternChangeButton.addEventListener("click", () => {
         });
         for (let i = inputValue; i < patternItem.length; i++) {
           patternNewCon.removeChild(patternItem[i]);
-          console.log("pattern removed:", i);
+          // console.log("pattern removed:", i);
         }
         console.log("length of the pattern after:", inputValue);
 
@@ -326,7 +382,7 @@ patternChangeButton.addEventListener("click", () => {
       } else {
         let referencePat = patternItem[0].cloneNode(true);
         for (const child of referencePat.children) {
-          if (child.style.backgroundColor == "green") {
+          if (child.style.backgroundColor == "rgb(169, 217, 179)") {
             child.style.backgroundColor = difNote(child, false);
           }
         }
@@ -346,7 +402,6 @@ patternChangeButton.addEventListener("click", () => {
       console.log("input is already the same");
     }
   }
-  document.querySelector(".current-length").innerHTML = inputValue;
 });
 
 // initial pattern
@@ -359,6 +414,20 @@ function initialPattern() {
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+let play = document.querySelector(".play");
+let playToggle = true;
+play.addEventListener("click", () => {
+  if (playToggle) {
+    play.querySelector(".playsvg").style.display = "none";
+    play.querySelector(".pausesvg").style.display = "inline";
+    playToggle = false;
+  } else {
+    play.querySelector(".playsvg").style.display = "inline";
+    play.querySelector(".pausesvg").style.display = "none";
+    playToggle = true;
+  }
+});
 
 // PLAY THE MUSIC
 async function playMusic() {
@@ -384,7 +453,7 @@ async function playMusic() {
     let count = 0;
     let notesArray = [];
     for (const child of patterns[p].children) {
-      if (child.style.backgroundColor == "green") {
+      if (child.style.backgroundColor == "rgb(169, 217, 179)") {
         // var idSplit = child.id.split("-");
         // instrument.play(idSplit[0], idSplit[1], duration);
         var idSplit = child.id.replace("-", "");
@@ -400,11 +469,15 @@ async function playMusic() {
     await sleep(tempo);
   }
   playing = false;
-  playbutton.innerHTML = "PLAY";
 }
 
 // initialization
 initialPattern();
+
+// INITIAL STARTER
+document.querySelector(".pattern-length").value =
+  document.querySelectorAll(".pattern-column").length;
+tempoInput.value = 30000 / tempo;
 
 // PLAYING THE MUSIC(this is confusing for some reason)
 playbutton.addEventListener("click", () => {
@@ -412,11 +485,11 @@ playbutton.addEventListener("click", () => {
   if (playing) {
     clearColumns(patternCol);
     aborting = true;
-    playbutton.innerHTML = "PLAY";
+    // playbutton.innerHTML = "PLAY";
   } else {
     clearColumns(patternCol);
     aborting = false;
-    playbutton.innerHTML = "STOP";
+    // playbutton.innerHTML = "STOP";
   }
 
   playMusic();
